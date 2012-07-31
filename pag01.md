@@ -508,4 +508,21 @@ Vamos criá-la?
 
 ## View
 
-BLAH!
+A *view* é o que utilizamos para solicitar e mostrar dados aos usuários. E ela que traz ou leva as informações devidamente tratadas em nossos controladores.  
+Até aqui ainda não colocamos nenhuma inteligência no *controller*, mas isso irá mudar mais adiante.  
+
+Vamos detalhar esta linha do erro:
+
+```ruby
+Missing template page/index, application/index with {:locale=>[:en], :formats=>[:html], :handlers=>[:erb, :builder]}
+```
+
+* Missing template page/index
+indica qual a página que está faltando, neste caso, http://servidor/page/index
+* :locale=>[:en]
+ajuda a definir qual template renderizar baseado no idioma detectado no navegador (fora do escopo deste tutorial)
+* :formats=>[:html]
+qual formato está sendo solicitado e portanto o que deverá ser comtemplado pelo template. Neste caso mostra ":html" porque utilizamos o browser (o RSpec simula o *request* de um browser). Poderia ser XML ou JSON, por exemplo.
+* :handlers=>[:erb, :builder]
+qual parser/handler/template engine (sinônimos) que será usado para renderizar este template
+
