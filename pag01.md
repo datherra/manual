@@ -307,7 +307,29 @@ Ou então, para economizar ponta de dedo:
 
 ```bash
 $ rails s
+=> Booting Thin
+=> Rails 3.2.6 application starting in development on http://0.0.0.0:3000
+=> Call with -d to detach
+=> Ctrl-C to shutdown server
+>> Thin web server (v1.3.1 codename Triple Espresso)
+>> Maximum connections set to 1024
+>> Listening on 0.0.0.0:3000, CTRL+C to stop
 ```
+
+Detalhando o *output* do comando:
+
+* `=> Booting Thin`
+***Thin*** é o *application server* que estamos usando, graças esta linha em nosso *Gemfile*:
+
+```ruby
+gem "thin"
+```
+O *application server* padrão do Rails é o ***WebBrick***, mas bisbilhotando e conversando com alguns desenvolvedores Rails mais experientes, fiquei sabendo que o Thin é mais rápido. Se no seu ambiente você usar o *WebBrick*, não tem problema, pois nada muda no código da aplicação. As diferenças poderiam começar a aparecer apenas no caso de você precisar ajustar alguma configuração muito específica deste *middleware*.
+
+* `=> Rails 3.2.6 application starting in development on http://0.0.0.0:3000`
+Versão do Rails e a URL onde ele está ouvindo. Copie esta URL e cole no seu navegador.  
+
+Esta página deverá aparecer:
 
 
 
