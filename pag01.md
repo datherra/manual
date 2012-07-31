@@ -408,9 +408,9 @@ Failures:
 
 Antes de analizarmos o erro, vamos mudar uma configuração do RSpec para que o *output* dele fique mais bacana. Edite o arquivo `.rspec` na raiz do projeto e atualize-o para este conteúdo:
 
-```ruby
+`
 --colour --format documentation
-```
+`
 
 Rode o teste novamente e repare na diferença do *output*:
 
