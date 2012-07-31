@@ -171,6 +171,7 @@ end
 Execute o teste novamente e verifique a mensagem de erro:
 
 ```bash
+$ rspec  spec/requests/cadastra_srs_spec.rb 
 FFF**
 
 Pending:
@@ -190,7 +191,7 @@ Failures:
      # /Users/datherra/.rvm/gems/ruby-1.9.3-p194/gems/mysql2-0.3.11/lib/mysql2/client.rb:44:in `connect'
 ```
 
-3 testes falharam. Como todos foram pelo mesmo motivo, omitive algumas linhas do erro.
+3 testes falharam. Como todos foram pelo mesmo motivo, removi algumas linhas do erro.
 A linha `Mysql2::Error: Unknown database 'srmanager_test'` é bem autoexplicativa e esperada, já que ainda não criamos a base de dados desta aplicação.
 
 Vamos criá-la?
