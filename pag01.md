@@ -285,6 +285,34 @@ Capybara::ElementNotFound: no link with title, id or text 'Cadastrar SR' found
 Faz sentido, já que pedimos para o teste clicar no link "Cadastrar SR", mas ele ainda não existe.
 
 Qual o próximo passo?  
+Repare nestas linhas de nosso teste:
+
+```ruby
+  visit "/"
+  click_link "Cadastrar SR"
+```
+
+Quando o usuário ***visita a raiz da aplicação***, o que é exibido no browser?  
+Vamos verificar?  
+
+## Server
+
+Para subir a aplicação, basta executar o comando abaixo na raiz do projeto, neste caso, na pasta ***srmanager***:
+
+```bash
+$ rails server
+```
+
+Ou então, para economizar ponta de dedo:
+
+```bash
+$ rails s
+```
+
+
+
+
+# => PAREI AQUI
 Bem, se vamos "cadastrar uma SR", parece que vamos ter que criar este elemento em nossa aplicação.
 
 ## Criando entidades da aplicação
