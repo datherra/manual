@@ -330,7 +330,37 @@ Versão do Rails e a URL onde ele está ouvindo. Copie esta URL e cole no seu na
 
 Esta página deverá aparecer:
 
+![](./img02.png "index.html default")
 
+Esta página é mostrada por padrão no Rails e ela fica em *srmanager/public/index.html*  
+Bem, ela não tem o link "Cadastrar SR" como esperado pelo nosso teste, não é mesmo? Já que não vamos utilizá-la, apague o arquivo:
+
+```bash
+$ rm public/index.html
+```
+
+Sem mesmo reiniciar o servidor Rails, recarregue a página no seu browser. Isto é o que temos agora:
+
+![](./img03.png "routing error")
+
+Algumas dicas aparecem neste passo:
+
+1. Repare que na janela em que você deixou rodando seu *rails server* apareceram algumas mensagens. Lá é exibido o *output* do servidor, que muitas vezes possui mensagens úteis para um *troubleshooting*. Vale dizer que estas mesmas mensagens podem ser encontradas no arquivo `log/development.log`
+
+2. O erro no browser acompanha uma sugestão:
+Try running `rake routes` for more information on available routes.
+
+Ok então, execute:
+```bash
+$ rake routes
+```
+***Nada!?***  
+
+Pois é, ainda não definimos nenhuma rota em nossa aplicação. Mas...  
+...que diabos são ***ROTAS!?***
+
+
+## Routes
 
 
 # => PAREI AQUI
