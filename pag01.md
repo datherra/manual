@@ -291,7 +291,7 @@ Bem, se vamos "cadastrar uma SR", parece que vamos ter que criar este elemento e
 
 Lembra deste desenho?
 
-![mvc](./mvc.png , "MVC")
+![mvc](./mvc.png "MVC")
 
 A grande maioria das entidades que usarmos nas aplicações, passarão por estes 3 componentes: o ***Controller***, o ***Model*** e a ***View***.
 
