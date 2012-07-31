@@ -48,7 +48,7 @@ Integre o rspec com o Rails:
 $ rails generate rspec:install
 ``` 
 
-Crie esqueleto do teste de integração:
+
 
 ```bash
 $ rails generate integration_test cadastra_sr
