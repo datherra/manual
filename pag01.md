@@ -11,6 +11,7 @@ $ rails new srmanager -T -d mysql
 ```
 
 Ajuste o seu ***Gemfile***:
+
 ```ruby
 source "https://rubygems.org"
 
@@ -32,7 +33,9 @@ group :development, :test do
   gem "rspec-rails"
 end
 ```
+
 SEMPRE que atualizar seu ***Gemfile***, execute:
+
 ```bash
 $ bundle install
 ```
@@ -47,7 +50,7 @@ $ rails generate rspec:install
 
 Crie esqueleto do teste de integração:
 ```bash
-$ rails generate integration_test cadastra\_sr
+$ rails generate integration_test cadastra_sr
 ```
 
 Done 
