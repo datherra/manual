@@ -212,7 +212,7 @@ $ rake spec:requests
 /Users/datherra/Devel/Ruby/Rails/apps/srmanager/db/schema.rb doesn't exist yet. Run `rake db:migrate` to create it then try again. If you do not intend to use a database, you should instead alter /Users/datherra/Devel/Ruby/Rails/apps/srmanager/config/application.rb to limit the frameworks that will be loaded
 ```
 
-Opa, novo erro =(
+Opa, novo erro =(  
 Mas a solução já vem indicada no próprio erro. (Conseguiu achar?)
 Rode:
 
