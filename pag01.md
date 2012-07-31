@@ -200,14 +200,14 @@ Vamos criá-la?
 
 Simples assim:
 
-````bash
+```bash
 $ rake db:create
 ```
 (aqui pode ser bom falar um pouco sobre o rake, pra que serve, etc)
 
 Rode o teste novamente, desta vez, vamos rodar através do *rake*, que dá no mesmo:
 
-````bash
+```bash
 $ rake spec:requests
 /Users/datherra/Devel/Ruby/Rails/apps/srmanager/db/schema.rb doesn't exist yet. Run `rake db:migrate` to create it then try again. If you do not intend to use a database, you should instead alter /Users/datherra/Devel/Ruby/Rails/apps/srmanager/config/application.rb to limit the frameworks that will be loaded
 ```
@@ -216,12 +216,12 @@ Opa, novo erro =(
 Mas a solução já vem indicada no próprio erro. (Conseguiu achar?)  
 Rode:
 
-````bash
+```bash
 $ rake db:migrate
 ```
 
 Rode o teste novamente:
-````bash
+```bash
 $ rake spec:requests
 /Users/datherra/.rvm/rubies/ruby-1.9.3-p194/bin/ruby -S rspec ./spec/requests/cadastra_srs_spec.rb
 FFF**
