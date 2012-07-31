@@ -501,3 +501,11 @@ Failure/Error: visit "/"
  # ./spec/requests/cadastra_srs_spec.rb:9:in `block (3 levels) in <top (required)>'
 ```
 
+*ActionView::MissingTemplate*!  
+Pois bem, já passamos do *controller* e chegamos agora no outro componente, a *view*.  
+
+Vamos criá-la?  
+
+## View
+
+BLAH!
