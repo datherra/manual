@@ -383,7 +383,16 @@ Mas há também as páginas estáticas, como uma *home page*, página institucio
 
 No trecho de código que colocamos no *routes.rb* estamos indicando que, toda vez que alguém visitar a raiz da aplicação, ela deverá ser redirecionada a *ACTION* ***index*** do *CONTROLLER* ***pages***.
 
-Salve o *routes.rb* e rode o teste:
+Salve o *routes.rb* e verifique suas rotas novamente:
+
+```bash
+$ rake routes
+root  / pages#index
+```
+
+Vimos que a rota relacionada ao "/" foi adicionada.  
+
+Agora, rode o teste:
 
 ```bash
 $ rspec spec/requests/cadastra_srs_spec.rb 
