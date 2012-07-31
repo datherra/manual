@@ -524,5 +524,14 @@ ajuda a definir qual template renderizar baseado no idioma detectado no navegado
 * :formats=>[:html]  
 qual formato está sendo solicitado e portanto o que deverá ser comtemplado pelo template. Neste caso mostra ":html" porque utilizamos o browser (o RSpec simula o *request* de um browser). Poderia ser XML ou JSON, por exemplo.
 * :handlers=>[:erb, :builder]  
-qual parser/handler/template engine (sinônimos) que será usado para renderizar este template
+qual parser/handler/template engine (chame como preferir) que será usado para renderizar este template
+
+Sendo mais prático, vamos corrigir o erro.  
+Na pasta *app/view* crie a subpasta *pages* (repare no plural), e dentro dela o arquivo *index.html.erb*:
+
+![](./img05.png "index.html view")
+
+Deixe o arquivo *index.html* vazio mesmo.
+
+***Teste*** (preciso colocar o comando aqui? Acho que não mais né?)  
 
