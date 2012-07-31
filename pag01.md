@@ -555,10 +555,19 @@ Capybara::ElementNotFound:
 ```
 
 Faz sentido não é?  
-Recarregue a página no browser, você verá que ira aparecer apenas uma página vazia, sem erros, o que já é bom sinal.  
+Recarregue a página no browser, e você verá apenas uma página vazia, sem erros, o que já é bom sinal.  
 
 O teste está reclamando que não encontra o link "Cadastrar SR".  
 
 Vamos criá-lo?
 
 ## ERB
+
+Citando a [apostila gratuíta](http://www.caelum.com.br/apostilas/) do curso de Rails da Caelum:
+
+> ***ERb***
+> ERb é uma implementação de eRuby que já acompanha a linguagem Ruby. Seu funcionamento é similar ao dos arquivos JSP/ASP: arquivos html com injeções de código. A idéia é que o HTML serve como um template, e outros elementos são dinâmicamente inseridos em tempo de renderização.
+Para uma página aceitar código Ruby, ela deve estar entre "<%" e "%>". Há uma variação deste operador, o "<%=", que não só executa códigos Ruby, mas também imprime o resultado na página HTML.
+> É importante notar que todos os atributos de instância (@variavel) de um controlador estão disponíveis em sua view.
+
+BLAH!
