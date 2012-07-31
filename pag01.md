@@ -362,9 +362,81 @@ Pois é, ainda não definimos nenhuma rota em nossa aplicação. Mas...
 
 ## Routes
 
+Citando o [*Rails Routing from the Outside In*](http://guides.rubyonrails.org/routing.html) :  
 
-# => PAREI AQUI
-Bem, se vamos "cadastrar uma SR", parece que vamos ter que criar este elemento em nossa aplicação.
+*The Rails router recognizes URLs and dispatches them to a controller’s action. It can also generate paths and URLs, avoiding the need to hardcode strings in your views.*  
+
+Pois bem, se é ele quem decide para onde mandar o usuário quando os *requests* do browser chegam ao Rails, precisamos configurar o que fazer quando o usuário solicitar o "/" (barra).  
+
+O arquivo *config/routes.rb* é criado junto com aplicação e possui vários exemplos comentados. Para simplificar, irei apagar todas as linhas comentadas e ir adicionando somente as úteis para a aplicação.  
+
+Edite o arquivo *config/routes.rb* e deixe-o assim:
+```ruby
+Srmanager::Application.routes.draw do
+  root :to => "page#index"
+end
+```
+
+Em aplicações web é comum possuirmos as páginas que lidam com conteúdo dinâmico, que são aquelas por onde se manipula informações que são extraídas e salvas de algum repositório de dados, normalmente um banco de dados.  
+
+Mas há também as páginas estáticas, como uma *home page*, página institucional com informações da empresa, *about page* com informações básicas da própria aplicação, etc. Para estes casos, é muito comum na comunidade Rails o uso de *controller* chamado *page* ou *site* que servirá apenas para servir suas páginas estáticas.  
+
+No trecho de código que colocamos no *routes.rb* estamos indicando que, toda vez que alguém visitar a raiz da aplicação, ela deverá ser redirecionada a *ACTION* ***index*** do *controller* ***page***.
+
+Salve o *routes.rb* e rode o teste:
+
+```bash
+$ rspec spec/requests/cadastra_srs_spec.rb 
+FFF**
+
+Pending:
+  Cadastra SRs quando enviando dados inválidos renderiza a página de cadastro de SR
+    # Not yet implemented
+    # ./spec/requests/cadastra_srs_spec.rb:38
+  Cadastra SRs quando enviando dados inválidos mostra mensagem de erro
+    # Not yet implemented
+    # ./spec/requests/cadastra_srs_spec.rb:39
+
+Failures:
+
+  1) Cadastra SRs quando enviando dados válidos redireciona para página de cadastro de SR
+     Failure/Error: visit "/"
+     ActionController::RoutingError:
+       uninitialized constant PageController
+     # ./spec/requests/cadastra_srs_spec.rb:9:in `block (3 levels) in <top (required)>'
+```
+
+Antes de analizarmos o erro, vamos mudar uma configuração do RSpec para que o *output* dele fique mais bacana. Edite o arquivo `.rspec` na raiz do projeto e atualize-o para este conteúdo:
+
+```ruby
+--colour --format documentation
+```
+
+Rode o teste novamente e repare na diferença do *output*:
+
+```bash
+Cadastra SRs
+  quando enviando dados válidos
+    redireciona para página de cadastro de SR (FAILED - 1)
+    mostra mensagem de sucesso (FAILED - 2)
+    mostra a SR cadastrada (FAILED - 3)
+  quando enviando dados inválidos
+    renderiza a página de cadastro de SR (PENDING: Not yet implemented)
+    mostra mensagem de erro (PENDING: Not yet implemented)
+```
+
+Este sumário do resultado dos testes é muito útil por já deixar claro quais funcionalidades falharam e também nos ajuda a construir descritivos coerentes para os testes, já que eles ao serem lidos desta forma, lhe direcionarão mais rapidamente ao problema (quando houver um).  
+
+Voltando ao erro:
+
+```ruby
+Failure/Error: visit "/"
+ActionController::RoutingError:
+  uninitialized constant PageController
+# ./spec/requests/cadastra_srs_spec.rb:9:in `block (3 levels) in <top (required)>'
+```
+
+Bem, como instruímos o Rails a redirecionar os usuários que procuram a raiz da aplicação para *"page#index"*, vamos ter que criar este *controller* citado no erro, o ****PageController****.  
 
 ## Criando entidades da aplicação
 
@@ -374,20 +446,20 @@ Lembra deste desenho?
 
 A grande maioria das entidades que usarmos nas aplicações, passarão por estes 3 componentes: o ***Controller***, o ***Model*** e a ***View***.
 
-Vamos começar criando o ***Controller***.  
-Conforme a imagem a abaixo, crie o arquivo *sr_controller.rb* na pasta *srmanager/app/controllers/* :
+Vamos começar criando o ***Controller*** que nosso teste está pedindo.  
+Conforme a imagem a abaixo, crie o arquivo *page_controller.rb* na pasta *app/controllers/* :
 
-![](./img01.png)
+![](./img04.png)
 
 Para criarmos um controller no Rails, apenas extenda a classe ***ApplicationController***:
 
 ```ruby
-class SrController < ApplicationController
+class PageController < ApplicationController
   
 end
 ```
 
-Salve o arquivo e, adivinha, rode o teste:
+Salve o arquivo e, adivinhe, rode o teste *again!*
 
 ```bash
 $ rake spec:requests
