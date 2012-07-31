@@ -373,15 +373,15 @@ O arquivo *config/routes.rb* é criado junto com aplicação e possui vários ex
 Edite o arquivo *config/routes.rb* e deixe-o assim:
 ```ruby
 Srmanager::Application.routes.draw do
-  root :to => "page#index"
+  root :to => "pages#index"
 end
 ```
 
 Em aplicações web é comum possuirmos as páginas que lidam com conteúdo dinâmico, que são aquelas por onde se manipula informações que são extraídas e salvas de algum repositório de dados, normalmente um banco de dados.  
 
-Mas há também as páginas estáticas, como uma *home page*, página institucional com informações da empresa, *about page* com informações básicas da própria aplicação, etc. Para estes casos, é muito comum na comunidade Rails o uso de um *controller* chamado *page* ou *site* que servirá apenas para servir suas páginas estáticas.  
+Mas há também as páginas estáticas, como uma *home page*, página institucional com informações da empresa, *about page* com informações básicas da própria aplicação, etc. Para estes casos, é muito comum na comunidade Rails o uso de um *controller* chamado *pages* ou *site* que servirá apenas para servir suas páginas estáticas.  
 
-No trecho de código que colocamos no *routes.rb* estamos indicando que, toda vez que alguém visitar a raiz da aplicação, ela deverá ser redirecionada a *ACTION* ***index*** do *CONTROLLER* ***page***.
+No trecho de código que colocamos no *routes.rb* estamos indicando que, toda vez que alguém visitar a raiz da aplicação, ela deverá ser redirecionada a *ACTION* ***index*** do *CONTROLLER* ***pages***.
 
 Salve o *routes.rb* e rode o teste:
 
@@ -402,7 +402,7 @@ Failures:
   1) Cadastra SRs quando enviando dados válidos redireciona para página de cadastro de SR
      Failure/Error: visit "/"
      ActionController::RoutingError:
-       uninitialized constant PageController
+       uninitialized constant PagesController
      # ./spec/requests/cadastra_srs_spec.rb:9:in `block (3 levels) in <top (required)>'
 ```
 
@@ -432,11 +432,11 @@ Voltando ao erro:
 ```ruby
 Failure/Error: visit "/"
 ActionController::RoutingError:
-  uninitialized constant PageController
+  uninitialized constant PagesController
 # ./spec/requests/cadastra_srs_spec.rb:9:in `block (3 levels) in <top (required)>'
 ```
 
-Bem, como instruímos o Rails a redirecionar os usuários que procuram a raiz da aplicação para *"page#index"*, vamos ter que criar este *controller* citado no erro, o ***PageController***.  
+Bem, como instruímos o Rails a redirecionar os usuários que procuram a raiz da aplicação para *"pages#index"*, vamos ter que criar este *controller* citado no erro, o ***PagesController***.  
 
 ## Criando entidades da aplicação
 
@@ -447,14 +447,14 @@ Lembra deste desenho?
 A grande maioria das entidades que usarmos nas aplicações, passarão por estes 3 componentes: o ***Controller***, o ***Model*** e a ***View***.
 
 Vamos começar criando o ***Controller*** que nosso teste está pedindo.  
-Conforme a imagem a abaixo, crie o arquivo *page_controller.rb* na pasta *app/controllers/* :
+Conforme a imagem a abaixo, crie o arquivo *pages_controller.rb* na pasta *app/controllers/* :
 
 ![](./img04.png)
 
 Para criarmos um controller no Rails, apenas extenda a classe ***ApplicationController***:
 
 ```ruby
-class PageController < ApplicationController
+class PagesController < ApplicationController
   
 end
 ```
@@ -470,16 +470,16 @@ Para economizar espaço, irei colar aqui apenas o trecho relevante do *output* d
 ```ruby
 Failure/Error: visit "/"
 AbstractController::ActionNotFound:
-  The action 'index' could not be found for PageController
+  The action 'index' could not be found for PagesController
 ```
 
-Bom, resolvemos o erro que reclamava do ***PageController***.  
+Bom, resolvemos o erro que reclamava do ***PagesController***.  
 Agora precisamos resolver o próximo erro, o da *action* ***index***.  
 
-Em Rails, *actions* são simples métodos dos *controllers*, portanto, no arquivo `page_controller.rb`, dentro da classe ***PageController*** defina o método ***index***:
+Em Rails, *actions* são simples métodos dos *controllers*, portanto, no arquivo `pages_controller.rb`, dentro da classe ***PagesController*** defina o método ***index***:
 
 ```ruby
-class PageController < ApplicationController
+class PagesController < ApplicationController
   def index
     
   end
@@ -496,7 +496,7 @@ Novo erro:
 ```ruby
 Failure/Error: visit "/"
  ActionView::MissingTemplate:
-   Missing template page/index, application/index with {:locale=>[:en], :formats=>[:html], :handlers=>[:erb, :builder]}. Searched in:
+   Missing template pages/index, application/index with {:locale=>[:en], :formats=>[:html], :handlers=>[:erb, :builder]}. Searched in:
      * "/Users/datherra/Devel/Ruby/Rails/apps/srmanager/app/views"
  # ./spec/requests/cadastra_srs_spec.rb:9:in `block (3 levels) in <top (required)>'
 ```
@@ -514,11 +514,11 @@ Até aqui ainda não colocamos nenhuma inteligência no *controller*, mas isso i
 Vamos detalhar esta linha do erro:
 
 ```ruby
-Missing template page/index, application/index with {:locale=>[:en], :formats=>[:html], :handlers=>[:erb, :builder]}
+Missing template pages/index, application/index with {:locale=>[:en], :formats=>[:html], :handlers=>[:erb, :builder]}
 ```
 
-* Missing template page/index  
-indica qual a página que está faltando, neste caso, http://servidor/page/index
+* Missing template pages/index  
+indica qual a página que está faltando, neste caso, http://servidor/pages/index
 * :locale=>[:en]  
 ajuda a definir qual template renderizar baseado no idioma detectado no navegador (fora do escopo deste tutorial)
 * :formats=>[:html]  
@@ -535,3 +535,12 @@ Deixe o arquivo *index.html* vazio mesmo.
 
 ***Teste*** (preciso colocar o comando aqui? Acho que não mais né?)  
 
+Novo erro:
+
+```ruby
+Failure/Error: click_link "Cadastrar SR"
+Capybara::ElementNotFound:
+  no link with title, id or text 'Cadastrar SR' found
+# (eval):2:in `click_link'
+# ./spec/requests/cadastra_srs_spec.rb:10:in `block (3 levels) in <top (required)>'
+```
