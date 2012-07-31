@@ -195,3 +195,94 @@ Failures:
 A linha `Mysql2::Error: Unknown database 'srmanager_test'` é bem autoexplicativa e esperada, já que ainda não criamos a base de dados desta aplicação.
 
 Vamos criá-la?
+
+## Criando a Base de Dados
+
+Simples assim:
+
+````bash
+$ rake db:create
+```
+(aqui pode ser bom falar um pouco sobre o rake, pra que serve, etc)
+
+Rode o teste novamente, desta vez, vamos rodar através do *rake*, que dá no mesmo:
+
+````bash
+$ rake spec:requests
+/Users/datherra/Devel/Ruby/Rails/apps/srmanager/db/schema.rb doesn't exist yet. Run `rake db:migrate` to create it then try again. If you do not intend to use a database, you should instead alter /Users/datherra/Devel/Ruby/Rails/apps/srmanager/config/application.rb to limit the frameworks that will be loaded
+```
+
+Opa, novo erro =(
+Mas a solução já vem indicada no próprio erro. (Conseguiu achar?)
+Rode:
+
+````bash
+$ rake db:migrate
+```
+
+Rode o teste novamente:
+````bash
+$ rake spec:requests
+/Users/datherra/.rvm/rubies/ruby-1.9.3-p194/bin/ruby -S rspec ./spec/requests/cadastra_srs_spec.rb
+FFF**
+
+Pending:
+  Cadastra SRs quando enviando dados inválidos renderiza a página de cadastro de SR
+    # Not yet implemented
+    # ./spec/requests/cadastra_srs_spec.rb:38
+  Cadastra SRs quando enviando dados inválidos mostra mensagem de erro
+    # Not yet implemented
+    # ./spec/requests/cadastra_srs_spec.rb:39
+
+Failures:
+
+  1) Cadastra SRs quando enviando dados válidos redireciona para página de cadastro de SR
+     Failure/Error: click_link "Cadastrar SR"
+     Capybara::ElementNotFound:
+       no link with title, id or text 'Cadastrar SR' found
+     # (eval):2:in `click_link'
+     # ./spec/requests/cadastra_srs_spec.rb:10:in `block (3 levels) in <top (required)>'
+
+  2) Cadastra SRs quando enviando dados válidos mostra mensagem de sucesso
+     Failure/Error: click_link "Cadastrar SR"
+     Capybara::ElementNotFound:
+       no link with title, id or text 'Cadastrar SR' found
+     # (eval):2:in `click_link'
+     # ./spec/requests/cadastra_srs_spec.rb:10:in `block (3 levels) in <top (required)>'
+
+  3) Cadastra SRs quando enviando dados válidos mostra a SR cadastrada
+     Failure/Error: click_link "Cadastrar SR"
+     Capybara::ElementNotFound:
+       no link with title, id or text 'Cadastrar SR' found
+     # (eval):2:in `click_link'
+     # ./spec/requests/cadastra_srs_spec.rb:10:in `block (3 levels) in <top (required)>'
+
+Finished in 0.3224 seconds
+5 examples, 3 failures, 2 pending
+
+Failed examples:
+
+rspec ./spec/requests/cadastra_srs_spec.rb:20 # Cadastra SRs quando enviando dados válidos redireciona para página de cadastro de SR
+rspec ./spec/requests/cadastra_srs_spec.rb:23 # Cadastra SRs quando enviando dados válidos mostra mensagem de sucesso
+rspec ./spec/requests/cadastra_srs_spec.rb:26 # Cadastra SRs quando enviando dados válidos mostra a SR cadastrada
+rake aborted!
+/Users/datherra/.rvm/rubies/ruby-1.9.3-p194/bin/ruby -S rspec ./spec/requests/cadastra_srs_spec.rb failed
+
+Tasks: TOP => spec:requests
+(See full trace by running task with --trace)
+```
+
+Ok, agora o erro mudou.
+Temos uma *exception* lançada pelo ***Capybara***, que é a lib usada pelo RSpec para simular a navegação do usuário em um site. A *exception* diz:
+
+```ruby
+Failure/Error: click_link "Cadastrar SR"
+Capybara::ElementNotFound: no link with title, id or text 'Cadastrar SR' found
+# (eval):2:in `click_link'
+# ./spec/requests/cadastra_srs_spec.rb:10:in `block (3 levels) in <top (required)>'
+```
+
+Faz sentido, já que pedimos para o teste clicar no link "Cadastrar SR", mas ele ainda não existe.
+
+Qual o próximo passo?
+Bem, se vamos "cadastrar uma SR", parece que vamos ter que criar este elemento em nossa aplicação.
