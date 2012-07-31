@@ -553,3 +553,12 @@ Capybara::ElementNotFound:
 # (eval):2:in `click_link'
 # ./spec/requests/cadastra_srs_spec.rb:10:in `block (3 levels) in <top (required)>'
 ```
+
+Faz sentido não é?  
+Recarregue a página no browser, você verá que ira aparecer apenas uma página vazia, sem erros, o que já é bom sinal.  
+
+O teste está reclamando que não encontra o link "Cadastrar SR".  
+
+Vamos criá-lo?
+
+## ERB
