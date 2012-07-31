@@ -286,3 +286,31 @@ Faz sentido, já que pedimos para o teste clicar no link "Cadastrar SR", mas ele
 
 Qual o próximo passo?  
 Bem, se vamos "cadastrar uma SR", parece que vamos ter que criar este elemento em nossa aplicação.
+
+## Criando entidades da aplicação
+
+Lembra deste desenho?
+
+![mvc](./mvc.png, "MVC")
+
+A grande maioria das entidades que usarmos nas aplicações, passarão por estes 3 componentes: o ***Controller***, o ***Model*** e a ***View***.
+
+Vamos começar criando o ***Controller***.  
+Conforme a imagem a abaixo, crie o arquivo *sr_controller.rb* na pasta *srmanager/app/controllers/* :
+
+!(./img01.png)
+
+Para criarmos um controller no Rails, apenas extenda a classe ***ApplicationController***:
+
+```ruby
+class SrController < ApplicationController
+  
+end
+```
+
+Salve o arquivo e, adivinha, rode o teste:
+
+```bash
+$ rake spec:requests
+```
+
