@@ -364,7 +364,7 @@ Pois é, ainda não definimos nenhuma rota em nossa aplicação. Mas...
 
 Citando o [*Rails Routing from the Outside In*](http://guides.rubyonrails.org/routing.html) :  
 
-*The Rails router recognizes URLs and dispatches them to a controller’s action. It can also generate paths and URLs, avoiding the need to hardcode strings in your views.*  
+> *The Rails router recognizes URLs and dispatches them to a controller’s action. It can also generate paths and URLs, avoiding the need to hardcode strings in your views.*  
 
 Pois bem, se é ele quem decide para onde mandar o usuário quando os *requests* do browser chegam ao Rails, precisamos configurar o que fazer quando o usuário solicitar o "/" (barra).  
 
