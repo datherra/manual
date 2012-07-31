@@ -323,7 +323,7 @@ Detalhando o *output* do comando:
 ```ruby
 gem "thin"
 ```
-O *application server* padrão do Rails é o ***WebBrick***, mas bisbilhotando e conversando com alguns desenvolvedores Rails mais experientes, fiquei sabendo que o Thin é mais rápido. Se no seu ambiente você usar o *WebBrick*, não tem problema, pois nada muda no código da aplicação. As diferenças poderiam começar a aparecer apenas no caso de você precisar ajustar alguma configuração muito específica deste *middleware*.
+O *application server* padrão do Rails é o ***WEBrick***, mas bisbilhotando e conversando com alguns desenvolvedores Rails mais experientes, fiquei sabendo que o Thin é mais rápido. Se no seu ambiente você usar o *WEBrick*, não tem problema, pois nada muda no código da aplicação. As diferenças poderiam começar a aparecer apenas no caso de você precisar ajustar alguma configuração muito específica deste *middleware*.
 
 * `=> Rails 3.2.6 application starting in development on http://0.0.0.0:3000`  
 Versão do Rails e a URL onde ele está ouvindo. Copie esta URL e cole no seu navegador.  
@@ -345,12 +345,12 @@ Sem mesmo reiniciar o servidor Rails, recarregue a página no seu browser. Isto 
 
 Algumas dicas aparecem neste passo:
 
-1. Repare que na janela em que você deixou rodando seu *rails server* apareceram algumas mensagens. Lá é exibido o *output* do servidor, que muitas vezes possui mensagens úteis para um *troubleshooting*. Vale dizer que estas mesmas mensagens podem ser encontradas no arquivo `log/development.log`
+1. Repare que na janela que você deixou rodando seu *rails server* apareceram algumas mensagens. Lá é exibido o *output* do servidor, que muitas vezes possui mensagens úteis para um *troubleshooting*. Vale dizer que estas mesmas mensagens podem ser encontradas no arquivo `log/development.log`
 
 2. O erro no browser acompanha uma sugestão:
 Try running `rake routes` for more information on available routes.
 
-Ok então, execute:
+Ok então. Execute:
 ```bash
 $ rake routes
 ```
