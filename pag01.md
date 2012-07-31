@@ -517,12 +517,12 @@ Vamos detalhar esta linha do erro:
 Missing template page/index, application/index with {:locale=>[:en], :formats=>[:html], :handlers=>[:erb, :builder]}
 ```
 
-* Missing template page/index
+* Missing template page/index  
 indica qual a página que está faltando, neste caso, http://servidor/page/index
-* :locale=>[:en]
+* :locale=>[:en]  
 ajuda a definir qual template renderizar baseado no idioma detectado no navegador (fora do escopo deste tutorial)
-* :formats=>[:html]
+* :formats=>[:html]  
 qual formato está sendo solicitado e portanto o que deverá ser comtemplado pelo template. Neste caso mostra ":html" porque utilizamos o browser (o RSpec simula o *request* de um browser). Poderia ser XML ou JSON, por exemplo.
-* :handlers=>[:erb, :builder]
+* :handlers=>[:erb, :builder]  
 qual parser/handler/template engine (sinônimos) que será usado para renderizar este template
 
