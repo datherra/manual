@@ -213,7 +213,7 @@ $ rake spec:requests
 ```
 
 Opa, novo erro =(  
-Mas a solução já vem indicada no próprio erro. (Conseguiu achar?)
+Mas a solução já vem indicada no próprio erro. (Conseguiu achar?)  
 Rode:
 
 ````bash
@@ -284,5 +284,5 @@ Capybara::ElementNotFound: no link with title, id or text 'Cadastrar SR' found
 
 Faz sentido, já que pedimos para o teste clicar no link "Cadastrar SR", mas ele ainda não existe.
 
-Qual o próximo passo?
+Qual o próximo passo?  
 Bem, se vamos "cadastrar uma SR", parece que vamos ter que criar este elemento em nossa aplicação.
