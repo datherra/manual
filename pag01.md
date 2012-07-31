@@ -485,3 +485,19 @@ class PageController < ApplicationController
   end
 end
 ```
+
+Teste.
+```bash
+$ rake spec:requests
+```
+
+Novo erro:
+
+```ruby
+Failure/Error: visit "/"
+ ActionView::MissingTemplate:
+   Missing template page/index, application/index with {:locale=>[:en], :formats=>[:html], :handlers=>[:erb, :builder]}. Searched in:
+     * "/Users/datherra/Devel/Ruby/Rails/apps/srmanager/app/views"
+ # ./spec/requests/cadastra_srs_spec.rb:9:in `block (3 levels) in <top (required)>'
+```
+
