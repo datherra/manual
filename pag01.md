@@ -436,7 +436,7 @@ ActionController::RoutingError:
 # ./spec/requests/cadastra_srs_spec.rb:9:in `block (3 levels) in <top (required)>'
 ```
 
-Bem, como instruímos o Rails a redirecionar os usuários que procuram a raiz da aplicação para *"page#index"*, vamos ter que criar este *controller* citado no erro, o ****PageController****.  
+Bem, como instruímos o Rails a redirecionar os usuários que procuram a raiz da aplicação para *"page#index"*, vamos ter que criar este *controller* citado no erro, o ***PageController***.  
 
 ## Criando entidades da aplicação
 
@@ -465,3 +465,23 @@ Salve o arquivo e, adivinhe, rode o teste *again!*
 $ rake spec:requests
 ```
 
+Para economizar espaço, irei colar aqui apenas o trecho relevante do *output* do RSpec:
+
+```ruby
+Failure/Error: visit "/"
+AbstractController::ActionNotFound:
+  The action 'index' could not be found for PageController
+```
+
+Bom, resolvemos o erro que reclamava do ***PageController***.  
+Agora precisamos resolver o próximo erro, o da *action* ***index***.  
+
+Em Rails, *actions* são simples métodos dos *controllers*, portanto, no arquivo `page_controller.rb`, dentro da classe ***PageController*** defina o método ***index***:
+
+```ruby
+class PageController < ApplicationController
+  def index
+    
+  end
+end
+```
