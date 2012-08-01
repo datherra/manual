@@ -561,7 +561,7 @@ O teste está reclamando que não encontra o link "Cadastrar SR".
 
 Vamos criá-lo?
 
-## ERB
+## ERB e mais Routes
 
 Citando a [apostila gratuíta](http://www.caelum.com.br/apostilas/) do curso de Rails da Caelum:
 
@@ -569,5 +569,30 @@ Citando a [apostila gratuíta](http://www.caelum.com.br/apostilas/) do curso de 
 > ERb é uma implementação de eRuby que já acompanha a linguagem Ruby. Seu funcionamento é similar ao dos arquivos JSP/ASP: arquivos html com injeções de código. A idéia é que o HTML serve como um template, e outros elementos são dinâmicamente inseridos em tempo de renderização.
 Para uma página aceitar código Ruby, ela deve estar entre "<%" e "%>". Há uma variação deste operador, o "<%=", que não só executa códigos Ruby, mas também imprime o resultado na página HTML.
 > É importante notar que todos os atributos de instância (@variavel) de um controlador estão disponíveis em sua view.
+
+De volta ao arquivo *app/views/pages/index.html*, aplique este conteúdo para criarmos o link "Cadastrar SR":
+
+```ruby
+<%= link_to "Nova SR", new_sr_path %>
+```
+
+Rode o teste.  
+Erro:
+
+```ruby
+Failure/Error: visit "/"
+ActionView::Template::Error:
+  undefined local variable or method `new_sr_path' for #<#<Class:0x00000128de3388>:0x000001012b41a0>
+```
+
+Que diabos é este `new_sr_path` afinal? E o `link_to`?  
+
+O *link_to* é o que no Rails são chamados de *helpers methods*. Este em específico tem a óbvia função de transformar os argumentos que passaremos à ele em uma tag html como:
+
+```html
+<a href="sr/new">Nova SR</a>
+``` 
+
+Ok, a parte do "Nova SR" ficou clara, mas e o outro argumento? Como transformar ***new_sr_path*** em ***sr/new***?  
 
 BLAH!
