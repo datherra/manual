@@ -591,7 +591,7 @@ O *link_to* é o que no Rails são chamados de *helpers methods*. Este em espec�
 
 ```html
 <a href="sr/new">Nova SR</a>
-``` 
+```
 
 Ok, a parte do "Nova SR" ficou clara, mas e o outro argumento? Como transformar ***new_sr_path*** em ***sr/new***?  
 
