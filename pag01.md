@@ -637,6 +637,9 @@ Para compreender melhor esta parte, vale usar esta tabela como referência. Ela 
 ![](./img06.png "RESTful routes")  
 fonte: [Rails Tutorial](http://ruby.railstutorial.org/chapters/a-demo-app#sec:demo_users_resource)  
 
+Outra excelente fonte de informação sobre este tópico está nos guias do próprio Rails:  
+http://guides.rubyonrails.org/routing.html  
+
 Rode o teste.  
 
 ```ruby
