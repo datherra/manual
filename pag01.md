@@ -652,7 +652,7 @@ Reclamou do ***SrsController***, mas não reclamou mais da falta do link "Cadast
 
 ![](./img07.png "browser com link")
 
- Vamos criá-lo?  
+Vamos criar o novo *controller*?
 
 ## Um novo Controller
 
@@ -669,3 +669,28 @@ end
 ```
 
 Rode o teste.  
+
+```ruby
+Failure/Error: click_link "Cadastrar SR"
+AbstractController::ActionNotFound:
+  The action 'new' could not be found for SrsController
+```
+
+Agora ele diz não encontrar a *action* ***new***. Crie:
+
+```ruby
+class SrsController < ApplicationController
+  def new
+    
+  end
+end
+```
+
+Rode o teste. Erro:  
+
+```ruby
+Failure/Error: click_link "Cadastrar SR"
+ActionView::MissingTemplate:
+  Missing template srs/new, application/new with {:locale=>[:en], :formats=>[:html], :handlers=>[:erb, :builder]}. Searched in:
+    * "/Users/datherra/Devel/Ruby/Rails/apps/srmanager/app/views"
+```
