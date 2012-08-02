@@ -632,6 +632,11 @@ Repare na linha:
 * /sr/new(.:format) - é a URL para a qual o helper indicado na primeira coluna é "traduzido" (e também é justamente o link que queríamos)
 * srs#new - significa que esta rota tem como destino o *controller* ***srs*** com a *action* ***new***. Vamos precisar disso já já.
 
+Para compreender melhor esta parte, vale usar esta tabela como referência. Ela seria o resultado de `resource :user`:
+
+![](./img06.png "RESTful routes")
+fonte: ![Rails Tutorial](http://ruby.railstutorial.org/chapters/a-demo-app#sec:demo_users_resource)  
+
 Rode o teste.  
 
 ```ruby
