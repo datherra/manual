@@ -634,8 +634,8 @@ Repare na linha:
 
 Para compreender melhor esta parte, vale usar esta tabela como referência. Ela seria o resultado de `resource :user`:
 
-![](./img06.png "RESTful routes")
-fonte: ![Rails Tutorial](http://ruby.railstutorial.org/chapters/a-demo-app#sec:demo_users_resource)  
+![](./img06.png "RESTful routes")  
+fonte: [Rails Tutorial](http://ruby.railstutorial.org/chapters/a-demo-app#sec:demo_users_resource)  
 
 Rode o teste.  
 
