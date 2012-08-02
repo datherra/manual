@@ -648,8 +648,24 @@ Failure/Error: click_link "Cadastrar SR"
    uninitialized constant SrsController
 ```
 
-Reclamou do ***SrsController***. Vamos criá-lo?  
+Reclamou do ***SrsController***, mas não reclamou mais da falta do link "Cadastar SR". Abra http://localhost:3000 no seu navegador e verifique que o link está lá:  
+
+![](./img07.png "browser com link")
+
+ Vamos criá-lo?  
 
 ## Um novo Controller
 
-BLAH!
+Crie o arquivo `srs_controller.rb` no diretório indicado abaixo:  
+
+![](./img08.png "srs_controller.rb file")  
+
+O arquivo deve ficar com este conteúdo:  
+
+```ruby
+class SrsController < ApplicationController
+  
+end
+```
+
+Rode o teste.  
