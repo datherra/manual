@@ -612,6 +612,7 @@ resource :sr
 produz um série de rotas e helpers. Após salvar o arquivo `routes.rb`, rode:
 
 ```bash
+$ rake routes
    root        /                  pages#index
      sr POST   /sr(.:format)      srs#create
  new_sr GET    /sr/new(.:format)  srs#new
