@@ -694,3 +694,10 @@ ActionView::MissingTemplate:
   Missing template srs/new, application/new with {:locale=>[:en], :formats=>[:html], :handlers=>[:erb, :builder]}. Searched in:
     * "/Users/datherra/Devel/Ruby/Rails/apps/srmanager/app/views"
 ```
+
+*Missing Template*? Já passamos por isso, lembra?  
+Vamos criar o template da *action* ***new*** que ele está esperando criando a pasta e o arquivo demonstrado abaixo:  
+
+![](./img09.png "new")  
+
+BLAH!
