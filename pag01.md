@@ -573,7 +573,7 @@ Para uma página aceitar código Ruby, ela deve estar entre "<%" e "%>". Há uma
 De volta ao arquivo *app/views/pages/index.html*, aplique este conteúdo para criarmos o link "Cadastrar SR":
 
 ```ruby
-<%= link_to "Nova SR", new_sr_path %>
+<%= link_to "Cadastrar SR", new_sr_path %>
 ```
 
 Rode o teste.  
@@ -590,9 +590,55 @@ Que diabos é este `new_sr_path` afinal? E o `link_to`?
 O *link_to* é o que no Rails são chamados de *helpers methods*. Este em específico tem a óbvia função de transformar os argumentos que passaremos à ele em uma tag html como:
 
 ```html
-<a href="sr/new">Nova SR</a>
+<a href="sr/new">Cadastrar SR</a>
 ```
 
-Ok, a parte do "Nova SR" ficou clara, mas e o outro argumento? Como transformar ***new_sr_path*** em ***sr/new***?  
+Ok, a parte do "Cadastrar SR" ficou clara, mas e o outro argumento? Como transformar ***new_sr_path*** em ***sr/new***?  
+
+Conseguimos fazer isso declarando um ***resource*** no arquivo ***config/rotas.rb***. Deixe o seu arquivo com este conteúdo:
+
+```ruby
+Srmanager::Application.routes.draw do
+  root :to => "pages#index"
+  resource :sr
+end
+```
+
+Esta simples linha
+```ruby
+resource :sr
+```
+
+produz um série de rotas e helpers. Após salvar o arquivo `routes.rb`, rode:
+
+```bash
+   root        /                  pages#index
+     sr POST   /sr(.:format)      srs#create
+ new_sr GET    /sr/new(.:format)  srs#new
+edit_sr GET    /sr/edit(.:format) srs#edit
+        GET    /sr(.:format)      srs#show
+        PUT    /sr(.:format)      srs#update
+        DELETE /sr(.:format)      srs#destroy
+```
+
+Repare na linha:
+```bash
+ new_sr GET    /sr/new(.:format)  srs#new
+```
+
+* new_sr - nome do helper criado pelo rails para se referir a esta rota via código (justamente a que usamos no arquivo *index.html* após o `link_to`)
+* GET - método HTTP usado
+* /sr/new(.:format) - é a URL para a qual o helper indicado na primeira coluna é "traduzido" (e também é justamente o link que queríamos)
+* srs#new - significa que esta rota tem como destino o *controller* ***srs*** com a *action* ***new***. Vamos precisar disso já já.
+
+Rode o teste.  
+
+```ruby
+Failure/Error: click_link "Cadastrar SR"
+ ActionController::RoutingError:
+   uninitialized constant SrsController
+```
+
+Reclamou do ***SrsController***. Vamos criá-lo?  
 
 BLAH!
