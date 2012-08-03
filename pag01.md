@@ -700,4 +700,31 @@ Vamos criar o template da *action* ***new*** que ele está esperando criando a p
 
 ![](./img09.png "new")  
 
-BLAH!
+Salve o arquivo em branco mesmo e...  
+
+Rode o teste. Novo erro:  
+
+```ruby
+Failure/Error: fill_in "Número da SR", :with => "SR12001234"
+ Capybara::ElementNotFound:
+   cannot fill in, no text field, text area or password field with id, name, or label 'Número da SR' found
+```
+
+Não achou o campo "Número da SR", que de acordo com nosso teste, seria o primeiro campo do formuládio de cadastro da SR a ser preenchido. Lembra do bloco *before* do nosso teste?  
+
+```ruby
+before do
+  visit "/"
+  click_link "Cadastrar SR"
+  
+  fill_in "Número da SR", :with => "SR12001234"
+  select "DSF", :from => "Sistema"
+  select "Robert Plant", :from => "Analista"
+  fill_in "Projeto", :with => "23o dígito"
+  fill_in "Conclusão da SR", :with => "Tudo certo!"
+  click_button "Adicionar SR"
+end
+```
+
+Vamos agora conhecer as facilidades, ou na linguagem *Rails*, os ***helpers*** para criação de formulários Web:  
+
