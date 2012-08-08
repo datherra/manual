@@ -782,4 +782,60 @@ ActionView::Template::Error:
 
 ###Aqui vou descrever um trobleshooting e porque ele é necessário.
 
-BLAH!
+O Rails é um *framework* que adere ao [***Convention over Configuration***](http://en.wikipedia.org/wiki/Convention_over_configuration), que resumidamente pode ser explicado sendo o fato de que ele espera que você cumpra (e decore) algumas convenções para não passar horas ajustando e debugando XMLs de configuração, algo muito comum em ambiente JavaEE.  
+
+Uma destas convenções tem relação com o plural ou singular para nomear classes, variáveis e arquivos encontrados nas *views*, *models* e *controllers*.  
+
+Uma maneira de percebermos isso é solicitando ao rails que faça o scaffolding de um objeto. Execute o comando abaixo, que por causa do parâmetro `-p` irá somente fingir (*pretend*) que executa o comando:
+
+```bash
+$ rails generate scaffold User -p
+      invoke  active_record
+      create    db/migrate/20120808212428_create_users.rb
+      create    app/models/user.rb
+      invoke    rspec
+      create      spec/models/user_spec.rb
+      invoke  resource_route
+       route    resources :users
+      invoke  scaffold_controller
+      create    app/controllers/users_controller.rb
+      invoke    erb
+      create      app/views/users
+      create      app/views/users/index.html.erb
+      create      app/views/users/edit.html.erb
+      create      app/views/users/show.html.erb
+      create      app/views/users/new.html.erb
+      create      app/views/users/_form.html.erb
+      invoke    rspec
+      create      spec/controllers/users_controller_spec.rb
+      create      spec/views/users/edit.html.erb_spec.rb
+      create      spec/views/users/index.html.erb_spec.rb
+      create      spec/views/users/new.html.erb_spec.rb
+      create      spec/views/users/show.html.erb_spec.rb
+      invoke      helper
+      create        spec/helpers/users_helper_spec.rb
+      create      spec/routing/users_routing_spec.rb
+      invoke      rspec
+      create        spec/requests/users_spec.rb
+      invoke    helper
+      create      app/helpers/users_helper.rb
+      invoke      rspec
+      invoke  assets
+      invoke    js
+      create      app/assets/javascripts/users.js
+      invoke    scss
+      create      app/assets/stylesheets/users.css.scss
+      invoke  scss
+      create    app/assets/stylesheets/scaffolds.css.scss
+```
+Repare no padrão:  
+* MODEL - `app/models/user.rb`
+
+|Left align|Right align|Center align|
+|:---------|----------:|:----------:|
+|This|This|This|
+|column|column|column|
+|will|will|will|
+|be|be|be|
+|left|right|center|
+|aligned|aligned|aligned|
