@@ -846,4 +846,29 @@ $ rails generate scaffold User -p
 
 Lembre-se, como usou o `-p` nada foi criado na sua *app*.  
 
+Existe uma classe no Rails (`ActiveSupport::Inflector::Inflections`) responsável por dar o correto plural a cada palavra. Mas ele trata de fazer isto com o inglês, por isso é sempre mais fácil nomear tudo em sua *app* em inglês.  
+
+Mas se não for possível, não tem problema, existem alguns meios de lidar com isso.  
+
+Por exemplo nesta *app* não tivemos problema até agora com o objeto **Sr**, mas o erro que apareceu por último aconteceu após termos adicionado o nome de duas novas **Classes** (que ainda serão criadas): **Sistema** e **Analista**.  
+
+Existe uma ferramenta ***MUITO*** útil para o desenvolvedor Rails que é o **Console**. Execute:  
+
+```bash
+$ rails console
+Loading development environment (Rails 3.2.6)
+1.9.3p194 :001 > 
+```
+
+Você terá carregado um *prompt* interativo de Ruby, o famoso ***irb***, mas no contexto de sua aplicação. Teste:  
+
+```irb
+ > "Sr".pluralize
+ => "Srs" 
+ > "Sistema".pluralize
+ => "Sistemas" 
+ > "Analista".pluralize
+ => "Analista" 
+```
+
 BLAH!
