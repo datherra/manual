@@ -871,4 +871,7 @@ Você terá carregado um *prompt* interativo de Ruby, o famoso ***irb***, mas no
  => "Analista" 
 ```
 
-BLAH!
+Veja como a palavra *Analista* não teve seu plural aplicado corretamente. Lembrando que as outras duas terem dado certo foi sorte, já que nem palavras do inglês são.  
+
+Vamos "ensinar" então o Rails o plural de *Analista*.  
+Edite o arquivo "inflections BLAH!"
