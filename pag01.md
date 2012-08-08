@@ -786,7 +786,18 @@ O Rails é um *framework* que adere ao [***Convention over Configuration***](htt
 
 Uma destas convenções tem relação com o plural ou singular para nomear classes, variáveis e arquivos encontrados nas *views*, *models* e *controllers*.  
 
-Uma maneira de percebermos isso é solicitando ao rails que faça o scaffolding de um objeto. Execute o comando abaixo, que por causa do parâmetro `-p` irá somente fingir (*pretend*) que executa o comando:
+Comecemos por esta lista:  
+
+* Database table names: plural
+** Database table names are expected to be pluralized. For example, a table containing ***employee*** records should be named ***Employees***.
+
+* Model class names: singular
+** Model class names are the singular form of the database table that they are modeling. For example, an ***Employee*** model is created based on a table named ***employees***.
+
+* Controller class names: plural
+** Controller class names are pluralized, such as ***EmployeesController*** or ***AccountsController***.  
+
+Uma maneira de percebermos como funciona a pluralização nos nomes das pastas e arquivos do Rails, é solicitando o *scaffolding* de um objeto. Execute o comando abaixo, que por causa do parâmetro `-p` irá somente fingir (*pretend*) que executa o comando:
 
 ```bash
 $ rails generate scaffold User -p
@@ -828,14 +839,9 @@ $ rails generate scaffold User -p
       invoke  scss
       create    app/assets/stylesheets/scaffolds.css.scss
 ```
-Repare no padrão:  
-* MODEL - `app/models/user.rb`
 
-|Left align|Right align|Center align|
-|:---------|----------:|:----------:|
-|This|This|This|
-|column|column|column|
-|will|will|will|
-|be|be|be|
-|left|right|center|
-|aligned|aligned|aligned|
+|Model|Route|Controller|View|
+|:---------|----------:|:----------:|:----------:|
+|app/models/user.rb|resources :users|app/controllers/users_controller.rb|app/views/users/index.html.erb|
+
+BLAH!
