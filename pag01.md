@@ -797,6 +797,10 @@ Comecemos por esta lista:
 * Controller class names: plural
 ** Controller class names are pluralized, such as ***EmployeesController*** or ***AccountsController***.  
 
+|Model|Route|Controller|View|
+|:---------|----------:|:----------:|:----------:|
+|app/models/user.rb|resources :users|app/controllers/users_controller.rb|app/views/users/index.html.erb|
+
 Uma maneira de percebermos como funciona a pluralização nos nomes das pastas e arquivos do Rails, é solicitando o *scaffolding* de um objeto. Execute o comando abaixo, que por causa do parâmetro `-p` irá somente fingir (*pretend*) que executa o comando:
 
 ```bash
@@ -840,8 +844,5 @@ $ rails generate scaffold User -p
       create    app/assets/stylesheets/scaffolds.css.scss
 ```
 
-|Model|Route|Controller|View|
-|:---------|----------:|:----------:|:----------:|
-|app/models/user.rb|resources :users|app/controllers/users_controller.rb|app/views/users/index.html.erb|
 
 BLAH!
