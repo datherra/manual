@@ -782,7 +782,7 @@ ActionView::Template::Error:
 
 ###Aqui vou descrever um trobleshooting e porque ele é necessário.
 
-O Rails é um *framework* que adere ao [***Convention over Configuration***](http://en.wikipedia.org/wiki/Convention_over_configuration), que resumidamente pode ser explicado sendo o fato de que ele espera que você cumpra (e decore) algumas convenções para não passar horas ajustando e debugando XMLs de configuração, algo muito comum em ambiente JavaEE.  
+O Rails é um *framework* que adere ao [***Convention over Configuration***](http://en.wikipedia.org/wiki/Convention_over_configuration), que resumidamente significa que ele espera que você cumpra (e decore) algumas convenções para não passar horas ajustando e debugando XMLs de configuração, algo muito comum em ambiente JavaEE.  
 
 Uma destas convenções tem relação com o plural ou singular para nomear classes, variáveis e arquivos encontrados nas *views*, *models* e *controllers*.  
 
