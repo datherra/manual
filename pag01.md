@@ -726,5 +726,60 @@ before do
 end
 ```
 
-Vamos agora conhecer as facilidades, ou na linguagem *Rails*, os ***helpers*** para criação de formulários Web:  
+Vamos agora conhecer as facilidades, ou na linguagem *Rails*, os ***helpers*** para criação de formulários Web. Preencha o arquivo *app/views/srs/new.html.erb* com o seguinte conteúdo:  
 
+```ruby
+<%= form_for @sr do |f| %>
+  <p>
+    <%= f.label :numero_sr, "Número da SR" %>
+    <%= f.text_field :numero_sr %>
+  </p>
+  
+  <p>
+    <%= f.label :sistema_id, "Sistema" %>
+    <%= f.collection_select :sistema_id,
+          Sistema.all,
+          :id,
+          :nome,
+          :include_blank => true
+    %>
+  </p>
+
+  <p>
+    <%= f.label :analista_id, "Analista" %>
+    <%= f.collection_select :analista_id,
+          Analista.all,
+          :id,
+          :nome,
+          :include_blank => true
+    %>
+  </p>
+  
+  <p>
+    <%= f.label :projeto, "Projeto" %>
+    <%= f.text_field :projeto %>
+  </p>
+  
+  <p>
+    <%= f.label :conclusao, "Conclusão da SR" %>
+    <%= f.text_area :conclusao, :rows => 3 %>
+  </p>
+  
+  <p>
+    <%= f.submit "Envia SR", :class => "btn btn-primary" %>
+  </p>
+  
+<% end %>
+```
+
+Rode o teste. Erro:  
+
+```ruby
+Failure/Error: click_link "Cadastrar SR"
+ActionView::Template::Error:
+  undefined method `model_name' for NilClass:Class
+```
+
+###Aqui vou descrever um trobleshooting e porque ele é necessário.
+
+BLAH!
