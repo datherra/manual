@@ -839,9 +839,10 @@ $ rails generate scaffold User -p
       invoke  scss
       create    app/assets/stylesheets/scaffolds.css.scss
 ```
+
 |Model|Route|Controller|View|
 |:---------|----------:|:----------:|:----------:|
-|app/models/user.rb|resources :users|app/controllers/users_controller.rb|app/views/users/index.html.erb|
+|app/models/user.rb|resources :users|app/controllers/users_controller.rb|app/views/users/index.html.erb|  
 
 Lembre-se, como usou o `-p` nada foi criado na sua *app*.  
 
