@@ -728,7 +728,7 @@ end
 
 Vamos agora conhecer as facilidades, ou na linguagem *Rails*, os ***helpers*** para criação de formulários Web. Preencha o arquivo *app/views/srs/new.html.erb* com o seguinte conteúdo:  
 
-```ruby
+```erb
 <%= form_for @sr do |f| %>
   <p>
     <%= f.label :numero_sr, "Número da SR" %>
