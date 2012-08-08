@@ -862,7 +862,7 @@ Loading development environment (Rails 3.2.6)
 
 Você terá carregado um *prompt* interativo de Ruby, o famoso ***irb***, mas no contexto de sua aplicação. Teste:  
 
-```session
+```ruby
  > "Sr".pluralize
  => "Srs" 
  > "Sistema".pluralize
