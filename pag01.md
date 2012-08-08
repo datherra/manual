@@ -786,16 +786,16 @@ O Rails é um *framework* que adere ao [***Convention over Configuration***](htt
 
 Uma destas convenções tem relação com o plural ou singular para nomear classes, variáveis e arquivos encontrados nas *views*, *models* e *controllers*.  
 
-Comecemos por esta lista:  
+Comecemos por esta [lista](http://underpop.free.fr/r/ruby-on-rails/cookbook/I_0596527314_CHP_2_SECT_6.html):  
 
 * Database table names: plural
 > Database table names are expected to be pluralized. For example, a table containing ***employee*** records should be named ***Employees***.
 
 * Model class names: singular
-  * Model class names are the singular form of the database table that they are modeling. For example, an ***Employee*** model is created based on a table named ***employees***.
+> Model class names are the singular form of the database table that they are modeling. For example, an ***Employee*** model is created based on a table named ***employees***.
 
 * Controller class names: plural
-  * Controller class names are pluralized, such as ***EmployeesController*** or ***AccountsController***.  
+> Controller class names are pluralized, such as ***EmployeesController*** or ***AccountsController***.  
 
 |Model|Route|Controller|View|
 |:---------|----------:|:----------:|:----------:|
