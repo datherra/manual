@@ -789,7 +789,7 @@ Uma destas convenções tem relação com o plural ou singular para nomear class
 Comecemos por esta lista:  
 
 * Database table names: plural
-  * => Database table names are expected to be pluralized. For example, a table containing ***employee*** records should be named ***Employees***.
+> Database table names are expected to be pluralized. For example, a table containing ***employee*** records should be named ***Employees***.
 
 * Model class names: singular
   * Model class names are the singular form of the database table that they are modeling. For example, an ***Employee*** model is created based on a table named ***employees***.
