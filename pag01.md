@@ -922,10 +922,54 @@ Ensinar a desfazer ajuda no rollback de alterações na base.
 O Rails aplica estas migrações na sequência em que elas foram criadas, tomando como referência o *timestamp* existente no nome dos arquivos de migrações.  
 
 Isso significa duas coisas:  
-1 usaremos um script do Rails para facilitar a criação do arquivo de migrações já com o *timestamp* definido;
-2 se precisar fazer ajustes a uma *migration* já criada, não altere o arquivo existente, crie uma outra *migration* somente com os ajustes que precisa, fazendo com que suas alterações sejam sempre incrementais e sequenciais.  
+1. usaremos um script do Rails para facilitar a criação do arquivo de migrações já com o *timestamp* definido;
+2. se precisar fazer ajustes a uma *migration* já criada, não altere o arquivo existente, crie uma outra *migration* somente com os ajustes que precisa, fazendo com que suas alterações sejam sempre incrementais e sequenciais.  
 
 Vamos criar o primeiro **MODEL**?
 
 # Model  
 
+Uso o comando abaixo para criar o esqueleto da sua *migration*:
+
+```bash
+$ rails generate migration cria_sr_model
+      invoke  active_record
+      create    db/migrate/20120810170240_cria_sr_model.rb
+```
+
+Edite o arquivo criado e deixe-o com o seguinte conteúdo:
+
+```ruby
+class CriaSrModel < ActiveRecord::Migration
+  def up
+    create_table :srs do |t|
+      t.string :numero_sr, :null => false
+      t.string :projeto
+      t.string :conclusao
+      
+      t.references :analista, :sistema, :null => false
+      
+      t.timestamps
+    end
+  
+    add_index :srs, :analista_id
+    add_index :srs, :sistema_id
+    add_index :srs, [:analista_id, :sistema_id], :name => :analista_sistema_index
+  end
+
+  def down
+    drop_table :srs
+  end
+end
+```
+
+Aqui chamo atenção especial para dois pontos:  
+
+1. nomes de tabelas são no plural => `srs`
+2. ao invés de criarmos as relações entre SRs, Sistemas e Analistas "na mão", criando os campos de suas respectivas PKs como FKs em SR, podemos apenas usar o método `references` como no exemplo acima. Ele corresponde a estes comandos:  
+```ruby
+ t.integer :analista_id, :null => false
+ t.integer :sistema_id, :null => false
+```
+
+BLAH!
