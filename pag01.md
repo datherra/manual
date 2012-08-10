@@ -1712,3 +1712,4 @@ Substitua o conteúdo do arquivo ***app/views/srs/_form.html.erb***:
 
 Salve a abra a aplicação no browser.  
 
+![](./img17.png "Finito!")  
