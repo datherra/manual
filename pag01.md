@@ -1047,7 +1047,7 @@ ActionView::Template::Error:
 ```
 
 Continuamos com o mesmo erro.  
-Isso acontece porque o Rails detecta, através da variável de ambiente `RAILS_ENV`, em qual ambiente estamos trabalhando. Na saída do comando acima, verifique que o título da coluna mostrada pelo comando `show tables` é Tables_in_srmanager_**development**:  
+Isso acontece porque o Rails detecta, através da variável de ambiente `RAILS_ENV`, em qual ambiente estamos trabalhando. Na saída do comando acima, verifique que o título da coluna mostrada pelo comando `show tables` é Tables\_in\_srmanager\_**development**:  
 
 * test
 * development
