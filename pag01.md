@@ -990,3 +990,52 @@ $ rake db:migrate
 ==  CriaSrModel: migrated (0.7210s) ===========================================
 ```
 
+Conecte ao banco de dados para verificar o aconteceu lá. Uma das formas de se fazer isto é usando o `rails dbconsole`:  
+
+
+
+```bash
+$ rails dbconsole
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 285
+Server version: 5.5.16 MySQL Community Server (GPL)
+
+Copyright (c) 2000, 2011, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show tables;
++---------------------------------+
+| Tables_in_srmanager_development |
++---------------------------------+
+| schema_migrations               |
+| srs                             |
++---------------------------------+
+2 rows in set (0.00 sec)
+
+mysql> desc srs;
++-------------+--------------+------+-----+---------+----------------+
+| Field       | Type         | Null | Key | Default | Extra          |
++-------------+--------------+------+-----+---------+----------------+
+| id          | int(11)      | NO   | PRI | NULL    | auto_increment |
+| numero_sr   | varchar(255) | NO   |     | NULL    |                |
+| projeto     | varchar(255) | YES  |     | NULL    |                |
+| conclusao   | varchar(255) | YES  |     | NULL    |                |
+| analista_id | int(11)      | NO   | MUL | NULL    |                |
+| sistema_id  | int(11)      | NO   | MUL | NULL    |                |
+| created_at  | datetime     | NO   |     | NULL    |                |
+| updated_at  | datetime     | NO   |     | NULL    |                |
++-------------+--------------+------+-----+---------+----------------+
+8 rows in set (0.01 sec)
+
+mysql> 
+```
+
+BLAH!
