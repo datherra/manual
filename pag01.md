@@ -974,4 +974,19 @@ Aqui chamo atenção especial para dois pontos:
  t.integer :sistema_id, :null => false
 ```
 
-BLAH!
+Para aplicar a migração, use:  
+
+```bash
+$ rake db:migrate
+==  CriaSrModel: migrating ====================================================
+-- create_table(:srs)
+   -> 0.1661s
+-- add_index(:srs, :analista_id)
+   -> 0.2253s
+-- add_index(:srs, :sistema_id)
+   -> 0.1439s
+-- add_index(:srs, [:analista_id, :sistema_id], {:name=>:analista_sistema_index})
+   -> 0.1853s
+==  CriaSrModel: migrated (0.7210s) ===========================================
+```
+
