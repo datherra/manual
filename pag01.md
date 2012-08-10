@@ -1100,4 +1100,49 @@ Quando abrimos a *app* no browser e clicamos no link "Cadastrar SR", o seguinte 
 
 ![](./img10.png "nill class")
 
-BLAH!
+Toda esta explicação sobre as *migrations* e os diferentes ambientes do Rails fazem sentido aqui. Porém, temos que voltar ao assunto MVC para entender como esta variável `@sr` **flui** pela aplicação.  
+
+![](./mvc2.png "MVC com sequencia")
+
+O desenho acima é do [Rails Tutorial](http://ruby.railstutorial.org/chapters/a-demo-app#sec:mvc_in_action) e usa como exemplo um objeto ***User***. Estes são os passos:  
+
+1. O browser manda um *request* para /users
+2. Rails roteia /users para a *action index* no *User controller*
+3. A *action index* pede ao *User model* para trazer todos o usuários (*User.all*)
+4. O *User model* busca todos os usuários na base
+5. O *User model* retorna a lista de todos os usuários ao *controller*
+6. O *controller* coloca os usuários na varíavel *@users*, que é passada para a *index view*
+7. A *view* usa ERB para renderizar a página HTML
+8. O *controller* passa o HTML de volta ao browser.
+
+Vamos então começar a colocar código dentro do nosso arquivo `app/controller/srs_controller`:  
+
+```ruby
+class SrsController < ApplicationController
+  def new
+   @sr = Sr.new 
+  end
+end
+```
+
+Antes mesmo de rodar o teste já é possível prever que teremos problemas com esta nova linha:  
+
+```ruby
+@sr = Sr.new
+```
+
+Não criamos o objeto ***Sr*** ainda. Até aqui criamos apenas a estrutura dele na base de dados através das migrações. Vamos então criar o *model Sr*. Crie o arquivo abaixo:  
+
+```ruby
+class Sr < ActiveRecord::Base
+  attr_accessible :numero_sr, :sistema_id, :analista_id, 
+                  :projeto, :conclusao
+                  
+  belongs_to :sistema
+  belongs_to :analista
+end
+```
+
+Para maiores detalhes consulte a seção ***Models*** dos [Rails Guides](http://guides.rubyonrails.org/)
+
+BLA!
