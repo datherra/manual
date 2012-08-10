@@ -922,14 +922,16 @@ Ensinar a desfazer ajuda no rollback de alterações na base.
 O Rails aplica estas migrações na sequência em que elas foram criadas, tomando como referência o *timestamp* existente no nome dos arquivos de migrações.  
 
 Isso significa duas coisas:  
-1. usaremos um script do Rails para facilitar a criação do arquivo de migrações já com o *timestamp* definido;
+
+1. usaremos um script do Rails para facilitar a criação do arquivo de migrações já com o *timestamp* definido
+
 2. se precisar fazer ajustes a uma *migration* já criada, não altere o arquivo existente, crie uma outra *migration* somente com os ajustes que precisa, fazendo com que suas alterações sejam sempre incrementais e sequenciais.  
 
 Vamos criar o primeiro **MODEL**?
 
 # Model  
 
-Uso o comando abaixo para criar o esqueleto da sua *migration*:
+Use o comando abaixo para criar o esqueleto da sua *migration*:
 
 ```bash
 $ rails generate migration cria_sr_model
