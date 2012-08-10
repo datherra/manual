@@ -1260,3 +1260,65 @@ De acordo com nosso teste, deveria haver uma opçõa **DSF** no *combo box* *Sis
 
 ![](./img11.png "form vazio")
 
+Os *combo boxes* *Sistema* e *Analisa* estão vazios.  
+
+Para ajudar nossos testes, vamos alimentar a base de dados com alguns dados sobre sistema e analistas usando o mecanismo de ***seed*** do Rails.  
+Abra o arquivo `db/seeds.rb` e preencha com o conteúdo abaixo:  
+
+```ruby
+%w( DSF OPSC1 Portal\ Web BSCS ).each do |sistema|
+  Sistema.create :nome => sistema
+end
+
+%w( Jimmy\ Page John\ Paul\ Jones 
+    Robert\ Plant John\ Bonham ).each do |analista|
+      Analista.create :nome => analista
+end
+```
+
+Esta é uma das formas de gerar dados para a base de dados, com simples código Ruby. Porém, conforme suas necessidades vão aumentando e seus testes ficam mais sofisticados, alguns *frameworks* ajudam neste trabalho. Um muito usado pela comunidade é o projeto [*Factory Gilr*](https://github.com/thoughtbot/factory_girl/). Para usar com Rails, utilize a ***gem*** [Factory Girl Rails](https://github.com/thoughtbot/factory_girl_rails).  
+
+Para fazer o Rails carregar a base com este dados, rode:  
+
+```bash
+$ rake db:seed
+$ export RAILS_ENV=test;rake db:seed
+$ unset RAILS_ENV
+```
+
+Novo erro:  
+```ruby
+Failure/Error: click_button "Adicionar SR"
+Capybara::ElementNotFound:
+ no button with value or id or text 'Adicionar SR' found
+```
+
+Aqui é só diferença na string. Em nosso arquivo de teste escrevemos:  
+
+```ruby
+  click_button "Adicionar SR"
+```
+
+E na *view new.html.erb* escrevemos:  
+
+```erb
+<p>
+  <%= f.submit "Envia SR" %>
+</p>
+```
+
+Escolha qual dos dois alterar, o importante é que estejam identicas as strings entre o teste e a realidade. Eu irei alterar o teste para:  
+
+```ruby
+  click_button "Envia SR"
+```
+
+Salve. Rode o teste. Novo erro:  
+
+```ruby
+Failure/Error: click_button "Envia SR"
+AbstractController::ActionNotFound:
+  The action 'create' could not be found for SrsController
+```
+
+Ao clicar no botão do nosso formulário, o browser dispara uma requisição **POST** HTTP na 
