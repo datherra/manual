@@ -595,44 +595,45 @@ O *link_to* é o que no Rails são chamados de *helpers methods*. Este em espec�
 
 Ok, a parte do "Cadastrar SR" ficou clara, mas e o outro argumento? Como transformar ***new_sr_path*** em ***sr/new***?  
 
-Conseguimos fazer isso declarando um ***resource*** no arquivo ***config/rotas.rb***. Deixe o seu arquivo com este conteúdo:
+Conseguimos fazer isso declarando ***resources*** no arquivo ***config/routes.rb***. Deixe o seu arquivo com este conteúdo:
 
 ```ruby
 Srmanager::Application.routes.draw do
   root :to => "pages#index"
-  resource :sr
+  resources :srs
 end
 ```
 
 Esta simples linha
 ```ruby
-resource :sr
+resources :srs
 ```
 
 produz um série de rotas e helpers. Após salvar o arquivo `routes.rb`, rode:
 
 ```bash
 $ rake routes
-   root        /                  pages#index
-     sr POST   /sr(.:format)      srs#create
- new_sr GET    /sr/new(.:format)  srs#new
-edit_sr GET    /sr/edit(.:format) srs#edit
-        GET    /sr(.:format)      srs#show
-        PUT    /sr(.:format)      srs#update
-        DELETE /sr(.:format)      srs#destroy
+   root        /                       pages#index
+    srs GET    /srs(.:format)          srs#index
+        POST   /srs(.:format)          srs#create
+ new_sr GET    /srs/new(.:format)      srs#new
+edit_sr GET    /srs/:id/edit(.:format) srs#edit
+     sr GET    /srs/:id(.:format)      srs#show
+        PUT    /srs/:id(.:format)      srs#update
+        DELETE /srs/:id(.:format)      srs#destroy
 ```
 
 Repare na linha:
 ```bash
- new_sr GET    /sr/new(.:format)  srs#new
+ new_sr GET    /srs/new(.:format)  srs#new
 ```
 
 * new_sr - nome do helper criado pelo rails para se referir a esta rota via código (justamente a que usamos no arquivo *index.html* após o `link_to`)
 * GET - método HTTP usado
-* /sr/new(.:format) - é a URL para a qual o helper indicado na primeira coluna é "traduzido" (e também é justamente o link que queríamos)
+* /srs/new(.:format) - é a URL para a qual o helper indicado na primeira coluna é "traduzido" (e também é justamente o link que queríamos)
 * srs#new - significa que esta rota tem como destino o *controller* ***srs*** com a *action* ***new***. Vamos precisar disso já já.
 
-Para compreender melhor esta parte, vale usar esta tabela como referência. Ela seria o resultado de `resource :user`:
+Para compreender melhor esta parte, vale usar esta tabela como referência. Ela seria o resultado de `resources :users`:
 
 ![](./img06.png "RESTful routes")  
 fonte: [Rails Tutorial](http://ruby.railstutorial.org/chapters/a-demo-app#sec:demo_users_resource)  
@@ -1145,4 +1146,114 @@ end
 
 Para maiores detalhes consulte a seção ***Models*** dos [Rails Guides](http://guides.rubyonrails.org/)
 
-BLA!
+Salve o arquivo e rodo o teste:  
+
+```bash
+Failure/Error: click_link "Cadastrar SR"
+ActionView::Template::Error:
+ uninitialized constant ActionView::CompiledTemplates::Sistema
+```
+
+Reclamou da "constante" **Sistema** que usamos. Faz sentido, pois tanto **Sistema** quanto **Analista** são *models* de nossa *app* que ainda não foram criadas.  
+
+Vamos criar a migration para **SISTEMA**:  
+
+```bash
+$ rails generate migration cria_sistema_model
+      invoke  active_record
+      create    db/migrate/20120810182318_cria_sistema_model.rb
+```
+
+Preencha o arquivo criado com este conteúdo:  
+
+```ruby
+class CriaSistemaModel < ActiveRecord::Migration
+  def up
+    create_table :sistemas do |t|
+      t.string :nome, :null => false
+      
+      t.timestamps
+    end
+  end
+
+  def down
+    drop_table :sistemas
+  end
+end
+```
+
+Crie o *model* `app/models/sistema.rb`
+
+```ruby
+class Sistema < ActiveRecord::Base
+  attr_accessible :nome
+  
+  has_many :sr
+end
+```
+
+Crie a migration para **ANALISTA**:  
+
+```bash
+$ rails generate migration cria_analista_model
+      invoke  active_record
+      create    db/migrate/20120810182758_cria_analista_model.rb
+```
+
+Preencha o arquivo criado com este conteúdo:  
+
+```ruby
+class CriaAnalistaModel < ActiveRecord::Migration
+  def up
+    create_table :analistas do |t|
+      t.string :nome, :null => false
+      
+      t.timestamps
+    end
+  end
+
+  def down
+    drop_table :analistas
+  end
+end
+```
+
+Crie o *model* `app/models/analista.rb`
+
+```ruby
+class Analista < ActiveRecord::Base
+  attr_accessible :nome
+  
+  has_many :sr
+end
+```
+
+Rode as *migrations*:  
+
+```bash
+$ rake db:migrate
+==  CriaSistemaModel: migrating ===============================================
+-- create_table(:sistemas)
+   -> 0.1412s
+==  CriaSistemaModel: migrated (0.1413s) ======================================
+
+==  CriaAnalistaModel: migrating ==============================================
+-- create_table(:analistas)
+   -> 0.2123s
+==  CriaAnalistaModel: migrated (0.2124s) =====================================
+```
+
+Rode o teste com este comando em específico, ou seja, a partir do ***rake***, pois esta é outra forma de conseguirmos aplicar as migrações pendentes à base de testes:  
+
+```bash
+$ rake spec:requests
+```
+
+Novo erro:  
+```ruby
+Failure/Error: select "DSF", :from => "Sistema"
+Capybara::ElementNotFound:
+ cannot select option, no option with text 'DSF' in select box 'Sistema'
+```
+
+BLAH!
