@@ -1649,6 +1649,7 @@ De baixo para cima, começe substituindo o conteúdo do arquivo ***app/views/srs
   <%= link_to "Voltar", srs_path, :class => "btn btn-primary" %>
 </div>
 ```
+
 Como o formulário da *view new* e *edit* são idênticos, coloquei o código em uma ***partial*** (_form.html.erb) e a chamei nas respectivas *views*:  
 
 Substitua o conteúdo do arquivo ***app/views/srs/new.html.erb***:
