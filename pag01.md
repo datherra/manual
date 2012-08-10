@@ -1623,4 +1623,91 @@ Crie os arquivos:
 
 ![](./img14.png "outras views")  
 
-BLAH!
+De baixo para cima, começe substituindo o conteúdo do arquivo ***app/views/srs/show.html.erb***:
+
+```erb
+<div class="page-header">
+  <h1>SR<%= @sr.numero_sr %></h1>
+</div>
+
+<dl class="dl-horizontal">
+    <dt><strong>Projeto:</strong></dt>
+    <dd><%= @sr.projeto %></dd>
+
+    <dt><strong>Analista:</strong></dt>
+    <dd><%= @sr.analista.nome %></dd>
+
+    <dt><strong>Sistema:</strong></dt>
+    <dd><%= @sr.sistema.nome %></dd>
+
+    <dt><strong>Conclusão:</strong></dt>
+    <dd><%= @sr.conclusao %></dd>
+</dl>
+
+<div class="form-actions">
+  <%= link_to "Editar", edit_sr_path(@sr), :class => "btn" %>
+  <%= link_to "Voltar", srs_path, :class => "btn btn-primary" %>
+</div>
+```
+Como o formulário da *view new* e *edit* são idênticos, coloquei o código em uma ***partial*** (_form.html.erb) e a chamei nas respectivas *views*:  
+
+Substitua o conteúdo do arquivo ***app/views/srs/new.html.erb***:
+
+```erb
+<%= render "form" %>
+```
+
+Substitua o conteúdo do arquivo ***app/views/srs/edit.html.erb***:
+
+```erb
+<%= render "form" %>
+```
+
+Substitua o conteúdo do arquivo ***app/views/srs/_form.html.erb***:
+
+```erb
+<%= form_for @sr do |f| %>
+  <p>
+    <%= f.label :numero_sr, "Número da SR" %>
+    <%= f.text_field :numero_sr %>
+  </p>
+  
+  <p>
+    <%= f.label :sistema_id, "Sistema" %>
+    <%= f.collection_select :sistema_id,
+          Sistema.all,
+          :id,
+          :nome,
+          :include_blank => true
+    %>
+  </p>
+
+  <p>
+    <%= f.label :analista_id, "Analista" %>
+    <%= f.collection_select :analista_id,
+          Analista.all,
+          :id,
+          :nome,
+          :include_blank => true
+    %>
+  </p>
+  
+  <p>
+    <%= f.label :projeto, "Projeto" %>
+    <%= f.text_field :projeto %>
+  </p>
+  
+  <p>
+    <%= f.label :conclusao, "Conclusão da SR" %>
+    <%= f.text_area :conclusao, :rows => 3 %>
+  </p>
+  
+  <p>
+    <%= f.submit "Envia SR", :class => "btn btn-primary" %>
+  </p>
+  
+<% end %>
+```
+
+Salve a abra a aplicação no browser.  
+
