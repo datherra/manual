@@ -913,7 +913,7 @@ ActionView::Template::Error:
 
 Agora o teste reclama da falta do **MODEL** (*model_name*). É justo, já que estamos tentando salvar um *Sr* mas ainda não definimos como salvá-la no banco de dados.  
 
-Como o Rails foi criado pensando na forma **ÁGIL** de se desenvolver software web, as modificações no banco de dados são feitas aos poucos, conforme a necessidade aparece, assim como todo o resto que tratamos até aqui.  
+Como o Rails foi criado pensando na forma [**ÁGIL**](http://agilemanifesto.org/) de se desenvolver software web, as modificações no banco de dados são feitas aos poucos, conforme a necessidade aparece, assim como todo o resto que tratamos até aqui.  
 
 Estas alterações são aplicadas através de ***migrations***, que são pequenas classes Ruby, filhas da classe Rails `ActiveRecord::Migration`, que possuem instruções de como **FAZER** e como **DESFAZER** as modificações que você precisa.  
 
