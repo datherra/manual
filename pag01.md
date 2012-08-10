@@ -1038,4 +1038,47 @@ mysql> desc srs;
 mysql> 
 ```
 
+Saia do shell do MySQL e rode o teste.  
+
+```ruby
+Failure/Error: click_link "Cadastrar SR"
+ActionView::Template::Error:
+  undefined method `model_name' for NilClass:Class
+```
+
+Continuamos com o mesmo erro.  
+Isso acontece porque o Rails detecta, através da variável de ambiente `RAILS_ENV`, em qual ambiente estamos trabalhando. Na saída do comando acima, verifique que o título da coluna mostrada pelo comando `show tables` é *Tables_in_srmanager_**development**:  
+
+* test
+* development
+* production
+
+O ambiente padrão é o *development*, mas os testes, claro, rodam no ambiente *test*.  
+
+Podemos verificar como está a base de teste da seguinte maneira:  
+
+```bash
+$ export RAILS_ENV=test;rails dbconsole
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 287
+Server version: 5.5.16 MySQL Community Server (GPL)
+
+Copyright (c) 2000, 2011, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show tables;
+Empty set (0.00 sec)
+```
+
+Não esquece de voltar ao ambiente *development*. Uma maneira de fazer isso pode ser:  
+
+```bash
+$ unset RAILS_ENV
+```
+
 BLAH!
