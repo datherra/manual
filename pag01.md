@@ -1256,4 +1256,7 @@ Capybara::ElementNotFound:
  cannot select option, no option with text 'DSF' in select box 'Sistema'
 ```
 
-BLAH!
+De acordo com nosso teste, deveria haver uma opçõa **DSF** no *combo box* *Sistema*. Abra a página no browser e verifique o temos até aqui:  
+
+![](./img11.png "form vazio")
+
