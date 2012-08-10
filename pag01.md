@@ -1324,7 +1324,7 @@ AbstractController::ActionNotFound:
 Ao clicar no botão do nosso formulário, o browser dispara uma requisição **POST** HTTP na URL de nosso *resource*. Traduzindo:  
 Lembra da nossa tabela de rotas padrão do Rails:  
 
-![](./img12.png "restful routes - post")
+![](./img12.png "restful routes - post")  
 fonte: [Rails Tutorial](http://ruby.railstutorial.org/chapters/a-demo-app#sec:demo_users_resource)  
 
 Veja como a *action* que será chamada no *controller* é a *action create*. Vamos ao nosso *SrsController* e vamos criá-la:  
