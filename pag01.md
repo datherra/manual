@@ -903,3 +903,29 @@ Reloading...
 Agora a palavra "Analista" teve seu plural aplicado corretamente.  
 Além de ajustar estas correções através de *Inflections*, também existe um projeto chamado [*brazilian-rails*](https://github.com/tapajos/brazilian-rails) que pode ser útil.  
 
+Voltando ao projeto, rode os testes novamente. Novo erro:  
+
+```ruby
+Failure/Error: click_link "Cadastrar SR"
+ActionView::Template::Error:
+  undefined method `model_name' for NilClass:Class
+```
+
+Agora o teste reclama da falta do **MODEL** (*model_name*). É justo, já que estamos tentando salvar um *Sr* mas ainda não definimos como salvá-la no banco de dados.  
+
+Como o Rails foi criado pensando na forma **ÁGIL** de se desenvolver software web, as modificações no banco de dados são feitas aos poucos, conforme a necessidade aparece, assim como todo o resto que tratamos até aqui.  
+
+Estas alterações são aplicadas através de ***migrations***, que são pequenas classes Ruby, filhas da classe Rails `ActiveRecord::Migration`, que possuem instruções de como **FAZER** e como **DESFAZER** as modificações que você precisa.  
+
+Ensinar a desfazer ajuda no rollback de alterações na base.  
+
+O Rails aplica estas migrações na sequência em que elas foram criadas, tomando como referência o *timestamp* existente no nome dos arquivos de migrações.  
+
+Isso significa duas coisas:  
+1 usaremos um script do Rails para facilitar a criação do arquivo de migrações já com o *timestamp* definido;
+2 se precisar fazer ajustes a uma *migration* já criada, não altere o arquivo existente, crie uma outra *migration* somente com os ajustes que precisa, fazendo com que suas alterações sejam sempre incrementais e sequenciais.  
+
+Vamos criar o primeiro **MODEL**?
+
+# Model  
+
