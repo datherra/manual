@@ -1081,4 +1081,23 @@ Não esquece de voltar ao ambiente *development*. Uma maneira de fazer isso pode
 $ unset RAILS_ENV
 ```
 
+Para preparar a base de testes com suas migrações, execute:  
+
+```bash
+$ rake db:test:prepare
+```
+
+Rode o teste novamente.  
+Ainda o mesmo erro:  
+
+```bash
+Failure/Error: click_link "Cadastrar SR"
+ActionView::Template::Error:
+  undefined method `model_name' for NilClass:Class
+```
+
+Quando abrimos a *app* no browser e clicamos no link "Cadastrar SR", o seguinte erro é mostrado:  
+
+![](./img10.png "nill class")
+
 BLAH!
