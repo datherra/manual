@@ -1327,5 +1327,26 @@ Lembra da nossa tabela de rotas padrão do Rails:
 ![](./img12.png "restful routes - post")  
 fonte: [Rails Tutorial](http://ruby.railstutorial.org/chapters/a-demo-app#sec:demo_users_resource)  
 
-Veja como a *action* que será chamada no *controller* é a *action create*. Vamos ao nosso *SrsController* e vamos criá-la:  
+Veja como a *action* que será chamada no *controller* é a *action create*. Vamos ao nosso *SrsController* e adicione o método (*action*) abaixo:  
 
+```ruby
+def create
+  @sr = Sr.new(params[:sr])
+  
+  if @sr.save
+    redirect_to sr_path(@sr)
+  else
+    render :new
+  end
+end
+```
+
+O Rails "empacota" os dados que irá mandar do browser para a *app* em um *hash* chamado ***params***. Neste caso estamos colhendo o objeto `:sr` de dentro dele e jogando dentro da variável global `@sr`. Lembrando que as variáveis globais declaradas nos *controllers* ficam disponívels para uso nas *views*.  
+
+Em seguida tentamos salvar os dados recebidos, e em caso positivo redirecionamos o usuário para uma página que lista todas as SRs cadastradas e em caso de erro, renderizamos o formulário novamente.  
+
+Rode o teste. Novo erro:  
+
+```ruby
+
+```
