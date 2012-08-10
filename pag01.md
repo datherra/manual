@@ -871,7 +871,35 @@ Você terá carregado um *prompt* interativo de Ruby, o famoso ***irb***, mas no
  => "Analista" 
 ```
 
-Veja como a palavra *Analista* não teve seu plural aplicado corretamente. Lembrando que as outras duas terem dado certo foi sorte, já que nem palavras do inglês são.  
+Veja como a palavra *Analista* não teve seu plural aplicado corretamente. Lembrando que as outras duas terem dado certo foi sorte, já que nem palavras do inglês elas são.  
 
-Vamos "ensinar" então o Rails o plural de *Analista*.  
-Edite o arquivo "inflections BLAH!"
+Este foi o motivo do último erro que encontramos.  
+
+Vamos então "ensinar" para o Rails o plural de *Analista*.  
+Edite o arquivo `config/initializers/inflections.rb` e adicione o conteúdo abaixo:
+
+```ruby
+ActiveSupport::Inflector.inflections do |inflect|
+  inflect.plural /^(analista)$/i, '\1s'
+  inflect.singular /^(analista)s$/i, '\1'
+end
+```
+
+Abra um `rails console` e faça os testes de pluralização novamente. Se sua sessão de console já estava aberta, tente atualizar as configurações com o comando abaixo, se não funcionar, reinicie o console:  
+
+```ruby
+001 > reload!
+Reloading...
+=> true 
+ 
+002 > "Sr".pluralize
+=> "Srs" 
+003 > "Sistema".pluralize
+=> "Sistemas" 
+004 > "Analista".pluralize
+=> "Analistas" 
+```
+
+Agora a palavra "Analista" teve seu plural aplicado corretamente.  
+Além de ajustar estas correções através de *Inflections*, também existe um projeto chamado [*brazilian-rails*](https://github.com/tapajos/brazilian-rails) que pode ser útil.  
+
